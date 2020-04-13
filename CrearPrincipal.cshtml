@@ -1,0 +1,68 @@
+﻿@model Practica_Empresarial.Models.AsignarHistoria
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                @using (Html.BeginForm("CrearPrincipal", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <h3 class="main-title">@ViewBag.TituloIngreso</h3>
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Historia</h4>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Historia, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Historia, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Mision</h4>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Mision, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Mision, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Vision</h4>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Vision, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Vision, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Ingresar" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div>
+                                    <h4>
+                                        @Html.ActionLink("Volver", "Principal")
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

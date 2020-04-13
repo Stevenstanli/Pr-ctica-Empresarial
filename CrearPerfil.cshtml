@@ -1,0 +1,52 @@
+﻿@model Practica_Empresarial.Models.AsignarPerfil
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                @using (Html.BeginForm("CrearPerfil", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <h4>@ViewBag.TituloIngreso</h4>
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.NombrePerfil :</h4>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Perfil, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Perfil, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Ingresar" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div>
+                                    <h4>
+                                        @Html.ActionLink("Volver a la Lista de Perfiles", "Perfil")
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

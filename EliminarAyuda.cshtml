@@ -1,0 +1,49 @@
+﻿@model Practica_Empresarial.Datos.PA_SelectAyuda_Result
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <div class="form-horizontal">
+                                    <h3 class="center">@ViewBag.TituloEliminar</h3>
+                                    <hr />
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <h4 class="main-title"> @ViewBag.Version: </h4>
+                                            <div class="col-md-10">
+                                                @Html.DisplayFor(model => model.Version_)
+                                            </div>
+                                        </div>
+                                        @using (Html.BeginForm("EliminarAyuda", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(model => model.ID_Ayuda)
+                                            <div class="form-actions no-color center">
+                                                <input type="submit" value="Borrar" class="btn btn-default" />
+                                            </div>
+                                            <hr />
+                                        }
+                                        <div>
+                                            <h4>
+                                                @Html.ActionLink("Volver a la Lista", "Ayuda")
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

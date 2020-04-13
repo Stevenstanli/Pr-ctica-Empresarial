@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectCategoria_Result>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                @if (ViewBag.Aviso == 1)
+                                {
+                                    <div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        <strong>¡Excelente!</strong> Se ha eliminado correctamente.
+                                    </div>
+                                }
+                                <h4>
+                                    @Html.ActionLink("Ingresar Nueva Categoría", "CrearCategoria")
+                                </h4>
+                                <table class="table">
+                                    <tr>
+                                        <th class="center">
+                                            <br />
+                                            <h4>
+                                                @ViewBag.NombreCategoria
+                                            </h4>
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="center">
+                                            <td>
+                                                <h4>
+                                                    @Html.DisplayFor(modelItem => item.NombreCategoria)
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                <h4>
+                                                    @Html.ActionLink("Editar", "EditarCategoria", new { id = item.ID_Categoria }) |
+                                                    @Html.ActionLink("Eliminar", "EliminarCategoria", new { id = item.ID_Categoria })
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

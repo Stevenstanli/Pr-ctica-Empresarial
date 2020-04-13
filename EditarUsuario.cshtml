@@ -1,0 +1,64 @@
+﻿@model Practica_Empresarial.Datos.ModificarUsuario
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <div class="form-horizontal">
+                                    <h3 class="center">@ViewBag.TituloModificar</h3>
+                                    <hr />
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Nombre: </h4>
+                                            <div class="col-md-10">
+                                                @Html.DisplayFor(model => model.NombreUsuario) @Html.DisplayFor(model => model.Apellido1) @Html.DisplayFor(model => model.Apellido2)
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Correo: </h4>
+                                            <div class="col-md-10">
+                                                @Html.DisplayFor(model => model.correo)
+                                            </div>
+                                        </div>
+                                        @using (Html.BeginForm("EditarUsuario", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.ID_Usuario)
+                                            <div class="form-group">
+                                                <h4 class="main-title">@ViewBag.Estado :</h4>
+                                                <div class="col-md-10">
+                                                    @Html.DropDownListFor(model => model.ID_Estado, (IEnumerable<SelectListItem>)ViewBag.ListaEstado)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Guardar" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        }
+                                        <div>
+                                            <h4>
+                                                @Html.ActionLink("Volver", "Usuario")
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectCotizacionRespuesta_Result>
+<div id="comments">
+    <div id="comments-list">
+        <div class="media">
+            <div class="media-body">
+                @foreach (var item in Model)
+                {
+                    <div class="well">
+                        <div class="media-heading">
+                            <strong>@Html.DisplayFor(modelItem => item.Asunto)</strong>&nbsp; <small>@Html.DisplayFor(modelItem => item.Fecha_Contestacion)</small>
+                        </div>
+                        @Html.HiddenFor(modelItem => item.ID_CotizacionRespuesta)
+                    <p>@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@model Practica_Empresarial.Models.AsignarAyuda
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    function previewFile() {
+        var preview = document.querySelector('pdf');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                @using (Html.BeginForm("CrearAyuda", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <h4>@ViewBag.TituloIngreso</h4>
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Version :</h4>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Version, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Version, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.Manual :</h4>
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.Manual, new { type = "file", onchange = "previewFile()" })
+                                                @Html.ValidationMessageFor(m => m.Manual, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Ingresar" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                <div>
+                                    <h4>
+                                        @Html.ActionLink("Volver a la Lista", "Ayuda")
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

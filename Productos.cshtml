@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectProductos_Result>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="blog">
+                <div class="blog-item">
+                    <div class="blog-content">
+                        <h4>
+                            @Html.ActionLink("Ingresar Nuevo Producto", "CrearProductos")
+                        </h4>
+                        <hr />
+                        <div class="gap"></div>
+                        <ul class="portfolio-items col-3 isotope fade-up">
+                            @foreach (var item in Model)
+                            {
+                                <li class="portfolio-item apps isotope-item">
+                                    <div class="item-inner">
+                                        <img src="data:image;base64,@System.Convert.ToBase64String(item.Imagen_)" />
+                                        <h5 class="center">@ViewBag.Nombre : @Html.DisplayFor(modelItem => item.NombreCategoria)</h5>
+                                        <hr />
+                                        <h6>@ViewBag.Categoria : @Html.DisplayFor(modelItem => item.NombreProducto)</h6>
+                                        <hr />
+                                        <h6>@ViewBag.Descripcion : @Html.DisplayFor(modelItem => item.Descripcion)</h6>
+                                        <hr />
+                                        <h6>@ViewBag.Estado : @Html.DisplayFor(modelItem => item.NombreEstado)</h6>
+                                        <hr />
+                                        <h6 class="center">
+                                            @Html.ActionLink("Editar", "EditarProducto", new { id = item.ID_Producto }) |
+                                            @Html.ActionLink("Eliminar", "EliminarProducto", new { id = item.ID_Producto })
+                                        </h6>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

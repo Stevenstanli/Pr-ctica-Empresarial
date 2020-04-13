@@ -1,0 +1,57 @@
+﻿@model Practica_Empresarial.Datos.PA_SelectCategoria_Result
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <div class="form-horizontal">
+                                    <h3 class="center">@ViewBag.TituloEliminar</h3>
+                                    <hr />
+                                    @if (ViewBag.Aviso == 1)
+                                    {
+                                        <div class="alert alert-danger alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            <strong>¡Error!</strong> Correo o contraseña no correctos.
+                                        </div>
+                                    }
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <h4 class="main-title">@ViewBag.NombreCategoria: </h4>
+                                            <div class="col-md-10">
+                                                @Html.DisplayFor(model => model.NombreCategoria)
+                                            </div>
+                                        </div>
+
+                                        @using (Html.BeginForm("EliminarCategoria", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(model => model.ID_Categoria)
+                                            <div class="form-actions no-color center">
+                                                <input type="submit" value="Borrar" class="btn btn-default" />
+                                            </div>
+                                            <hr />
+                                        }
+                                        <div>
+                                            <h4>
+                                                @Html.ActionLink("Volver a la Lista", "Categoria")
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

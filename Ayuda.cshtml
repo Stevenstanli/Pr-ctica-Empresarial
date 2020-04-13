@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectAyuda_Result>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <h4>
+                                    @Html.ActionLink("Ingresar Nuevos Datos Ayuda", "CrearAyuda")
+                                </h4>
+                                <table class="table">
+                                    <tr>
+                                        <th class="center">
+                                            <br />
+                                            <h4>
+                                                @ViewBag.Version
+                                            </h4>
+                                        </th>
+                                        <th>
+                                            <h4>
+                                                @ViewBag.Manual
+                                            </h4>
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                <tr>
+                                    <td>
+                                        <h4>
+                                            @Html.DisplayFor(modelItem => item.Version_)
+                                        </h4>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            @Html.ActionLink("Descargar", "DownLoadFile", new { id = item.ID_Ayuda })
+                                        </h4>
+                                    </td>
+                                    <td>
+                                        <h4>
+                                            @Html.ActionLink("Eliminar", "EliminarAyuda", new { id = item.ID_Ayuda })
+                                        </h4>
+                                    </td>
+                                </tr>
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

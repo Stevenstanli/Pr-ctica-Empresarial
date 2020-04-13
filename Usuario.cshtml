@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectUsuario_Result>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="blog">
+                <div class="blog-item">
+                    <div class="blog-content">
+                        <h4>
+                            @Html.ActionLink("Editar su información de Usuario", "EditarUsuarioinfo", new { id = 1 })
+                        </h4>
+                        <div class="gap"></div>
+                        <hr />
+                        <ul class="portfolio-items col-3 isotope fade-up">
+                            @foreach (var item in Model)
+                            {
+                                <li class="portfolio-item apps isotope-item">
+                                    <div class="item-inner">
+                                        @Html.HiddenFor(modelItem => item.ID_Usuario)
+
+                                        @Html.HiddenFor(modelItem => item.ID_Perfil)
+
+                                        <h6>@ViewBag.Perfil : @Html.DisplayFor(modelItem => item.NombrePerfil)</h6>
+                                        <hr />
+                                        <h6>@ViewBag.Nombre : @Html.DisplayFor(modelItem => item.NombreUsuario) @Html.DisplayFor(modelItem => item.Apellido1) @Html.DisplayFor(modelItem => item.Apellido2)</h6>
+                                        <hr />
+                                        <h6>@ViewBag.Estado : @Html.DisplayFor(modelItem => item.NombreEstado)</h6>
+                                        <hr />
+                                        <h6>@ViewBag.Correo : @Html.DisplayFor(modelItem => item.correo)</h6>
+                                        <hr />
+                                        <h6 class="center">
+                                            @Html.ActionLink("Editar Estado", "EditarUsuario", new { id = item.ID_Usuario }) |
+                                            @Html.ActionLink("Eliminar", "EliminarUsuario", new { id = item.ID_Usuario })
+                                        </h6>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

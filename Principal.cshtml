@@ -1,0 +1,54 @@
+﻿@model Practica_Empresarial.Datos.PA_SelectHistoria_Result
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="gap"></div>
+            <div class="blog">
+                <div class="blog-item">
+                    <div class="blog-content">
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="center gap fade-down section-heading">
+                                    <h4 class="main-title">@ViewBag.Historia</h4>
+                                    <hr>
+                                    <p>@Html.DisplayFor(model => model.Historia)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="center gap fade-down section-heading">
+                                    <h4 class="main-title">@ViewBag.Mision</h4>
+                                    <hr>
+                                    <p>@Html.DisplayFor(model => model.Mision)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="center gap fade-down section-heading">
+                                    <h4 class="main-title">@ViewBag.Vision</h4>
+                                    <hr>
+                                    <p>@Html.DisplayFor(model => model.Vision)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="center gap fade-down section-heading">
+                                    <h4>
+                                        @Html.ActionLink("Editar", "EditarPrincipal", new { id = Model.ID_Historia })
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

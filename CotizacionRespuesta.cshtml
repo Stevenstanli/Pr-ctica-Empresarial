@@ -1,0 +1,92 @@
+﻿@model Practica_Empresarial.Models.AsignarCotizaciónRespuesta
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <div class="form-horizontal">
+                                    <h4 class="center">@ViewBag.TituloIngreso</h4>
+                                    <div class="form-group">
+                                        <h4 class="main-title">@ViewBag.Nombre :</h4>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido1) @Html.DisplayFor(model => model.Apellido2)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="main-title">@ViewBag.Correo :</h4>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Correo)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="main-title">@ViewBag.Telefono :</h4>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Telefono)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="main-title">@ViewBag.Asunto :</h4>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Asunto)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4 class="main-title">@ViewBag.Descripcion :</h4>
+                                        <div class="col-md-10">
+                                            @Html.DisplayFor(model => model.Descripcion)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="comments">
+                                    <div id="comments-list">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                @using (Html.BeginForm("CotizacionRespuesta", "Administrador", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <div class="well">
+                                                        <div class="media-heading">
+                                                            <h4 class="main-title">@ViewBag.Asunto :</h4>
+                                                            @Html.HiddenFor(model => model.ID_Cotizacion)
+                                                            @Html.EditorFor(model => model.AsuntoEnviar, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.AsuntoEnviar, null, new { @class = "text-danger" })
+
+                                                        </div>
+                                                        <h4 class="main-title">@ViewBag.Descripcion :</h4>
+                                                        @Html.TextAreaFor(model => model.DescripcionEnviar, 8, 70, new { htmlAttributes = new { @class = "form-control" } })
+                                                        <br />
+                                                        @Html.ValidationMessageFor(model => model.DescripcionEnviar, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-offset-2 col-md-10">
+                                                            <input type="submit" value="Enviar" class="btn btn-default" />
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @{Html.RenderAction("CotizacionRespuestaLista", "Administrador");}
+                                                <div>
+                                                    <h4>
+                                                        @Html.ActionLink("Volver a las cotizaciones", "Cotizacion")
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

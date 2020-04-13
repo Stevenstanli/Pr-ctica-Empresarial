@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Practica_Empresarial.Datos.PA_SelectPerfil_Result>
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div id="content-wrapper">
+    <section id="services" class="white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 fade-up">
+                    <div class="blog">
+                        <div class="blog-item">
+                            <div class="blog-content">
+                                <h4>
+                                    @Html.ActionLink("Ingresar Nuevo Perfil", "CrearPerfil")
+                                </h4>
+                                <table class="table">
+                                    <tr>
+                                        <th class="center">
+                                            <br />
+                                            <h4>
+                                                @Html.DisplayNameFor(model => model.NombrePerfil)
+                                            </h4>
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="center">
+                                            <td>
+                                                <h4>
+                                                    @Html.DisplayFor(modelItem => item.NombrePerfil)
+                                                </h4>
+                                            </td>
+                                            <td>
+                                                <h4>
+                                                    @Html.ActionLink("Editar", "EditarPerfil", new { id = item.ID_Perfil }) |
+                                                    @Html.ActionLink("Eliminar", "EliminarPerfil", new { id = item.ID_Perfil })
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
